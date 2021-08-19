@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 90vh;
+            width: 90vw;
+            display: flex;
+            /* justify-content: center;
+            align-items: center; */
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            gap: 0 20px;
+            justify-content: center;
+        }
+
+        .square {
+            width: 250px;
+            height: 250px;
+            margin: 5px;
+        }
+
+        #red {
+            background-color: rgb(197, 33, 33);
+        }
+
+        #blue {
+            background-color: rgb(33, 36, 197);
+        }
+        
+        #green {
+            background-color: rgb(60, 197, 33);
+        }
+
+        #pink {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="square" id="red"></div>
+        <div class="square" id="blue"></div>
+        <div class="square" id="green"></div>
+        <div class="square" id="pink"></div>
+    </div>
+
+    <script>
+        function sayHi(){
+            alert(`I am ${this.id}`);
+            red.removeEventListener("click", sayHi);
+        }
+
+        function changeColor() {
+            this.style.background = "yellow";
+        }
+
+        function coord (event) {
+            alert(`Подія: ${event.type} спрацювала на елементі ${event.currentTarget}`);
+            alert(`координати (${event.clientX}, ${event.clientY})`);
+        }
+
+        class Menu {
+            constructor(element){
+                this.element = element;
+                console.log("-----", this.element);
+            }
+
+            handleEvent(event) {
+                switch(event.type) {
+                    case 'mousedown':
+                        this.element.innerHTML = "Натиснуто кнопку миші";
+                        break;
+                    case 'mouseup':
+                        this.element.innerHTML = "...і відпущено";
+                        setTimeout(() => this.element.innerHTML = '', 1000)
+                        break;
+                }
+
+                let method = "on" + event.type[0].toUpperCase() + event.type.slice(1);
+                console.log(method);
+                this[method](event);
+            }
+
+            onMousemove(){
+                this.element.innerHTML = "Рух мишкою";
+                // setTimeout(() => this.element.innerHTML = '', 1000);
+            }
+        }
+
+        red.addEventListener("click", changeColor);
+        red.addEventListener("click", sayHi);
+
+        blue.addEventListener("click", coord);
+
+        green.addEventListener("click", {
+            handleEvent(event){
+                alert(`${event.type} координати (${event.clientX}, ${event.clientY})`);
+            }
+        });
+
+        let menu = new Menu(pink);
+        pink.addEventListener('mousedown', menu);
+        pink.addEventListener('mouseup', menu);
+        pink.addEventListener('mousemove', menu);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+
+        .field{
+            position: relative;
+            background: green;
+            border: solid 5px black;
+            width: 200px;
+            height: 200px;
+            margin: auto 0;
+            overflow: hidden;
+        }
+
+        .field > p {
+            margin: 0;
+            padding: 0;
+            font-size: large;
+            line-height: 35px;
+        }
+
+        #ball {
+            position: absolute;
+            left: 0px; right: 0; top: 0; bottom: 0;
+            background-image: url("../../img/ball.svg");
+            width: 40px;
+            height: 40px;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="field" id="field">
+        <p>
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+            ....................................................
+        </p>
+        <div id="ball"></div>
+    </div>
+
+    <script>
+        function moveBall() {
+            let x2 = event.offsetX - ball.offsetWidth/2;
+            let y2 = event.offsetY - ball.offsetHeight/2;
+            // alert(this.offsetWidth)
+            if(x2 < 40){
+                x2 = 0;
+            } else if(x2 > this.offsetWidth-50){
+                x2 = this.offsetWidth-50;
+            }
+
+            if(y2 < 40){
+                y2 = 0;
+            }else if(y2 > this.offsetHeight-50){
+                y2 = this.offsetHeight-50;
+            }
+
+            ball.style.left = x2 + "px";
+            ball.style.top = y2 + "px";
+        }
+
+        field.addEventListener("click", moveBall);
+    </script>
+</body>
+</html>

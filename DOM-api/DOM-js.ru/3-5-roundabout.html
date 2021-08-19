@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            height: 90vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .roundabout_container{
+            width: 500px;
+            position: relative;
+            background: rgba(241, 238, 183, 0.658);
+            border: solid 2px black;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .roundabout_wrapper{
+            width: 410px;
+            overflow: hidden;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .roundabout_list {
+            list-style: none;
+            width: 9999px;
+            padding: 0;
+            margin: 0;
+            transition: all 2s;
+        }
+        
+        .roundabout_list li{
+            display: inline-block;
+            
+        }
+
+        .roundabout_img{
+            display: block;
+        }
+
+        .roundabout_arrow {
+            width: 30px;
+            position: absolute;
+            top: calc(50% - 10px);
+        }
+
+        .roundabout_arrow:hover{
+            cursor: pointer;
+        }
+
+        .roundabout_arrow__left {
+            transform: rotate(-90deg);
+            left: 10px;
+        }
+
+        .roundabout_arrow__right {
+            right: 10px;
+            transform: rotate(90deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="roundabout">
+        <div class="roundabout_container">
+            <span><img class="roundabout_arrow roundabout_arrow__left" src="../../img/up-arrow.png" alt="arrow"></span>
+            <span><img class="roundabout_arrow roundabout_arrow__right" src="../../img/up-arrow.png" alt="arrow"></span>
+           <div class="roundabout_wrapper">
+            <ul class="roundabout_list">
+                <li><img class="roundabout_img" src="../../img/smiles/1.png" alt="smile"></li>
+                <li><img class="roundabout_img" src="../../img/smiles/2.png" alt="smile"></li>
+                <li><img class="roundabout_img" src="../../img/smiles/3.png" alt="smile"></li>
+                <li><img class="roundabout_img" src="../../img/smiles/4.png" alt="smile"></li>
+                <li><img class="roundabout_img" src="../../img/smiles/5.png" alt="smile"></li>
+                <li><img class="roundabout_img" src="../../img/smiles/6.png" alt="smile"></li>
+                <li><img class="roundabout_img" src="../../img/smiles/7.png" alt="smile"></li>
+                <li><img class="roundabout_img" src="../../img/smiles/8.png" alt="smile"></li>
+                <li><img class="roundabout_img" src="../../img/smiles/9.png" alt="smile"></li>
+                <li><img class="roundabout_img" src="../../img/smiles/10.png" alt="smile"></li>
+            </ul> 
+           </div>
+        </div>
+    </div>
+    <script>
+        let width = 130
+        let count = 3;
+        let position = 0;
+
+        let leftArrow = document.querySelector(".roundabout_arrow__left");
+        let rigthArrow = document.querySelector(".roundabout_arrow__right");
+        let listElem = document.querySelectorAll(".roundabout_img");
+
+        function nextImgs () {
+            let r = document.querySelector('.roundabout_list');
+
+            if(position < listElem.length){
+                position += count;
+                r.style.transform = `translateX(${-1*position*width}px)`
+            }
+
+           
+            
+            
+        }
+
+        function prevImgs () {
+            let l = document.querySelector('.roundabout_list');
+            if(position > 1){
+                position -= count;
+                l.style.transform = `translateX(${position*width}px)`
+            }
+        }
+
+        
+
+        leftArrow.addEventListener('click', prevImgs);
+        rigthArrow.addEventListener('click', nextImgs)
+    </script>
+</body>
+</html>

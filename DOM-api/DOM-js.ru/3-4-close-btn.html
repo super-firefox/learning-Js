@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .messages {
+            width: 50vw;
+            background: rgba(128, 255, 0, 0.397);
+        }
+
+        .message {
+            border-top:chartreuse 2px solid;
+            position: relative;
+            padding: 5px 20px;
+        }
+
+        .cross{
+            color: crimson;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        .cross:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="messages">
+        <div class="message">
+            <h4>Осёл</h4>
+            <p>Домашний осёл (лат. Equus asinus asinus), или ишак, — одомашненный подвид дикого осла (Equus asinus), сыгравший важную историческую роль в развитии хозяйства и культуры человека и по-прежнему широко в хозяйстве многих развивающихся стран.</p>
+        </div>
+
+        <div class="message">
+            <h4>Лошадь</h4>
+            <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+        </div>
+
+        <div class="message">
+            <h4>Кошка</h4>
+            <p>Кошка, или домашняя кошка (лат. Felis silvestris catus), — домашнее животное, одно из наиболее популярных(наряду с собакой) «животных-компаньонов». Являясь одиночным охотником на грызунов и других мелких животных, кошка — социальное животное, использующее для общения широкий диапазон звуковых сигналов.</p>
+        </div>
+    </div>
+
+    <script>
+        let messagesAll = document.querySelectorAll(".message");
+        console.log(messagesAll);
+
+        for(let m of messagesAll){
+            m.insertAdjacentHTML("afterbegin", '<span class="cross">[x]</span>')
+            m.firstChild.onclick = () => m.remove();
+        }
+
+
+    </script>
+</body>
+</html>
