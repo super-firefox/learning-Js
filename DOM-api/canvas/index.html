@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: darkblue solid 3px;
+        }
+    </style>
+</head>
+<body>
+    <canvas class="canvasPath2D" width="860px" height="400px"></canvas>
+    <canvas class="canvasConture" width="860px" height="400px"></canvas>
+    <canvas class="canvasMoz" width="860px" height="400px"></canvas>
+    <canvas class="canvas" width="860px" height="400px"></canvas>
+    <script>
+        function drawPath2D() {
+            let canvas = document.querySelector('.canvasPath2D');
+            let ctx = canvas.getContext('2d');
+
+            let rectangle = new Path2D();
+            rectangle.rect(10, 10, 50, 50);
+
+            let circle = new Path2D();
+            circle.moveTo(125, 35);
+            circle.arc(100, 35, 25, 0, 2 * Math.PI);
+
+            ctx.stroke(rectangle);
+            ctx.fill(circle);
+
+            let fig = new Path2D("m445.37 211.98h-90.551c-3.175-9.829-12.409-16.96-23.281-16.96-10.871 0-20.105 7.131-23.279 16.96h-12.319c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h12.318c3.174 9.832 12.407 16.965 23.28 16.965s20.108-7.133 23.282-16.965h90.551c4.142 0 7.5-3.357 7.5-7.5s-3.359-7.5-7.501-7.5zm-113.832 16.965c-5.216 0-9.46-4.246-9.46-9.465 0-5.216 4.244-9.46 9.46-9.46 5.218 0 9.462 4.244 9.462 9.46 0 5.219-4.245 9.465-9.462 9.465z");
+            ctx.fill(fig);
+        }
+
+        window.addEventListener('load', drawPath2D);
+
+        function drawConture() {
+            // beginPath() - Создаёт новый контур. После создания используется в дальнейшем командами рисования при построении контуров.
+            // Path методы - Методы для установки различных контуров объекта.
+            // closePath() - Закрывает контур, так что будущие команды рисования вновь направлены контекст.
+            // stroke() - Рисует фигуру с внешней обводкой.
+            // fill() - Рисует фигуру с заливкой внутренней области.
+            // первой командой построения контура всегда является функция  moveTo()
+
+            let canvas = document.querySelector('.canvasConture');
+            let ctx = canvas.getContext('2d');
+
+            ctx.beginPath();
+            ctx.moveTo(75, 50);
+            ctx.lineTo(100, 75);
+            ctx.lineTo(100, 25);
+            ctx.fillStyle = 'green';
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        window.addEventListener('load', drawConture);
+
+        function draw(){
+            //fillStyle - колір фігури
+            //прямокутники
+            //fillRect(x, y, width, height) - заповнений прямокутник
+            //strokeRect(x, y, width, height) - прямокутний контур
+            //clearRect(x, y, width, height) - очищення прямокутної області
+
+            let canvas = document.querySelector('.canvasMoz');
+            let ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = "rgb(200, 0, 0)";
+            ctx.fillRect(10, 10, 55, 50);
+
+            ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+            ctx.fillRect(30, 30, 55, 50);
+
+            ctx.strokeRect(10, 100, 55, 50);
+
+            ctx.clearRect(20, 20, 35, 30);
+        }
+
+        window.addEventListener('load', draw)
+
+        // SMILE
+        
+        // Событие load происходит когда ресурс и его зависимые ресурсы закончили загружаться.
+       window.addEventListener('load', function() {
+            let canvas, context, rotation = 0, image, bg, x, y;
+            canvas = document.querySelector('.canvas');
+            //"2d", ведущий к созданию объекта CanvasRenderingContext2D, представляющий двумерный контекст.
+            context = canvas.getContext("2d");
+
+            // Создаем и загружаем изображения
+            bg = new Image();
+            bg.src = '../../img/pexels-pixabay-326055.jpg';
+            bg.onload = repaint;
+            image = new Image;
+            image.src = '../../img/smiles/10.png';
+            //При движении мыши перерисовываем наш холст
+            canvas.onmousemove = function(e){
+                repaint(e.offsetX, e.offsetY);
+            }
+
+            // Animation functions
+
+            function drawRotated() {
+                context.save();
+                context.translate(x + image.width/2, y + image.height/2);
+                context.rotate(rotation * Math.PI / 180);
+                context.drawImage(image, -image.width / 2, -image.height / 2);
+                context.restore();
+            }
+
+            function repaint(X, Y) {
+                if(X) x = X - image.width/2;
+                if(Y) y = Y - image.height/2;
+                context.drawImage(bg, 0, 0);
+                drawRotated(context, image, x, y, rotation);
+            }
+
+            setInterval(function() {
+                rotation+=2; 
+                repaint();
+            }, 20);
+       })
+    </script>
+</body>
+</html>

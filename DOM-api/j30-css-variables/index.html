@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variable</title>
+    <link rel="shortcut icon" href="formula.svg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --base: yellow;
+            --spacing: 10px;
+            --blur: 2px;
+            --drop-shadow: 
+        }
+
+        .change-img {
+            width: 50vw;
+            padding: var(--spacing);
+            background: var(--base);
+            filter: blur(var(--blur));
+        }
+
+        .h1 {
+            color: var(--base);
+        }
+
+        *{
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #172d40;
+            font-family: 'Open Sans', sans-serif;
+            color: white;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .setting {
+            display: flex;
+            column-gap: 20px;
+            padding: 20px;
+            font-size: 30px;
+            font-weight: 100;
+        }
+
+        .setting_item {
+            display: flex;
+            column-gap: 10px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Update CSS Variables with <span class="h1">JS</span></h1>
+        <div class="setting">
+            <div class="setting_item">
+                <label for="spacing">Spacing:</label>
+                <input type="range" name="spacing" id="spacing" min = "10" max = "200" data-sizing="px" data-my="Ihor">
+            </div>
+            <div class="setting_item">
+                <label for="blur">Blur:</label>
+                <input type="range" name="blur" id="blur" min = "0" max = "25" data-sizing="px">
+            </div>
+            <div class="setting_item">
+                <label for="color">Base Color</label>
+                <input type="color" name="base" id="color">
+            </div>
+        </div>
+        <img class="change-img" src="pexels.jpg" alt="moutaine">
+    </div>
+    <script>
+        const inputs = document.querySelectorAll('.setting_item input');
+        console.log(inputs);
+
+        function handleUpdate() {
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+            console.log(this.value + suffix)
+        }
+
+        inputs.forEach(input => input.addEventListener('input', handleUpdate))
+    </script>
+</body>
+</html>
