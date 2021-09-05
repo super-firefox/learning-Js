@@ -6,17 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body {
+        
+        }
         canvas {
             border: darkblue solid 3px;
         }
     </style>
 </head>
 <body>
+    <canvas id="canvas" width="860px" height="400px"></canvas>
+    <img id="source" src="https://mdn.mozillademos.org/files/5397/rhino.jpg" width="860px" height="400px">
     <canvas class="canvasPath2D" width="860px" height="400px"></canvas>
     <canvas class="canvasConture" width="860px" height="400px"></canvas>
     <canvas class="canvasMoz" width="860px" height="400px"></canvas>
     <canvas class="canvas" width="860px" height="400px"></canvas>
     <script>
+        function drawImg() {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            var image = document.getElementById('source');
+
+            ctx.drawImage(image, 33, 71, 104, 124, 21, 20, 87, 104);
+        }
+        window.addEventListener('load', drawImg);
+
         function drawPath2D() {
             let canvas = document.querySelector('.canvasPath2D');
             let ctx = canvas.getContext('2d');
