@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .conteiner{
+            display: flex;
+            flex-wrap: nowrap;
+            width: 90vw;
+            height: 90vh;
+            justify-content: stretch;
+            /* flex-direction: row; */
+            border: 5px solid black;
+        }
+
+        .one{
+            position: relative;
+            min-width: 600px;
+            height: 100px;
+            background-color: chartreuse;
+        }
+
+        .two{
+            position: relative;
+            min-width: 1000px;
+            height: 100px;
+            background-color: rgba(255, 174, 0, 0.7);
+            left:-30px;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="conteiner">
+        <div class="one">one block</div>
+        <div class="two">two block</div>
+    </div>
+</body>
+</html>

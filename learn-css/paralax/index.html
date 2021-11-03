@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paralax</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        perspective: 1px;
+        transform-style: preserve-3d;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        font-family: sans-serif;
+        position: relative;
+    }
+
+    header{
+        min-height: 100vh;
+        padding-top: 20%;
+        transform-style: inherit;
+        width: 100vw;
+    }
+
+    header::before {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        z-index: -1;
+        transform-origin: center;
+        min-height: 100vh;
+        background-image: url('../../img/1103597.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        transform: translateZ(-1px) scale(2);
+    }
+
+    h1, h3 {
+        text-align: center;
+    }
+
+    h1{
+        margin-top: -100px;
+    }
+</style>
+<body>
+    <header>
+        <h1>Hello, paralax</h1>
+        <h3>How you are?</h3>
+    </header>
+</body>
+</html>

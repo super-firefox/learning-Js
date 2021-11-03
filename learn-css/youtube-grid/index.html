@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            grid-column-gap: 15px;
+            grid-row-gap: 15px;
+
+        }
+
+        .grid_item1, .grid_item2, .grid_item3 {
+            border: 2px dashed black;
+            padding: 20px;
+        }
+
+        .grid_item1 {
+            background-color: brown;
+            /* grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row: 1 / 4; */
+            /* grid-area: row-start / colm-start / row-end / colm-end */
+            grid-area: 1 / 1 / 4 / 4;
+        }
+
+        .grid_item2 {
+            background-color: cadetblue;
+        }
+
+        .grid_item3 {
+            background-color: darkmagenta;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="grid_item1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam quia aspernatur reprehenderit esse cumque modi ducimus mollitia, laborum, qui consequuntur excepturi atque numquam ut dolore cum accusantium aliquid ipsa incidunt.</div>
+        <div class="grid_item2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic consequatur aspernatur rem nemo placeat magni totam quae quaerat exercitationem, mollitia officiis recusandae libero tempora doloribus explicabo, molestiae delectus facilis! Natus.</div>
+        <div class="grid_item3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit labore dolore nemo quia cum mollitia molestiae? Qui alias repudiandae culpa, maiores labore fugit eum eius veritatis, totam cupiditate, tempora placeat.</div>
+    </div>
+</body>
+</html>

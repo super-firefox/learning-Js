@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML forms</title>
+    <style>
+        form {
+            background-color: coral;
+            max-height: 90vh;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+        }
+
+        input {
+            max-width: 300px;
+        }
+
+        button[type=submit]{
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/moz" method="POST">
+        <ul>
+            <li>
+                <input type="text" name="name" id="name">
+            </li>
+            <li>
+                <input type="email" name="email" id="email">
+            </li>
+            <li>
+                <textarea name="msg" id="msg" cols="30" rows="10"></textarea>
+            </li>
+        </ul>
+        
+        
+        
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
