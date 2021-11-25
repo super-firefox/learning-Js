@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple SpA</title>
+    <style>
+        .header{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .main{
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#">Home</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#settings">Settings</a>
+    </div>
+    <div class="main"></div>
+</body>
+
+<script>
+    class Route {
+        constructor(name, html, defaultRoute = false){
+            if(name || name === ''){
+                this.name = name;
+            } else {
+                throw new Error('You must input name route')
+            }
+
+            if(html){
+                this.html = html;
+            } else {
+                throw new Error('You must input html data')
+            }
+           
+            this.defaultRoute = defaultRoute;
+        }
+
+        async getHtml(){
+            let url = await fetch(`${this.html}`);
+            return url.text();
+        }
+
+        isActiveRoute(path) {
+           return path.replace('#', '') === this.name; 
+        }
+    }
+
+    /* 
+        routes: Array
+        roootElem: String 
+    */
+    class Router {
+        constructor(routes, rootElem = '.app'){
+            if(routes){
+                this.routes = routes;
+            } else {
+                throw new Error('Routes is not exist')
+            }
+            
+            this.rootElem = document.querySelector(rootElem);
+            this.init();
+            window.addEventListener('hashchange', this.render.bind(this))
+        }
+
+        async init(){
+            window.location.hash = '';
+            for(let route of this.routes){
+                if(route.defaultRoute === true){
+                    this.rootElem.innerHTML = await route.getHtml();
+                    return;
+                }
+            }
+        }
+
+        async render(){
+            let currentHush = window.location.hash.slice(1);
+            for(let route of this.routes){
+                if(route.name === currentHush){
+                    this.rootElem.innerHTML = await route.getHtml();
+                    return;
+                }
+            }
+        }
+    }
+
+    new Router(
+        [
+            new Route('', './temp/home.html', true), 
+            new Route('quiz', './temp/quiz.html'),
+            new Route('settings', './temp/settings.html')
+        ], 
+        '.main'
+    )
+
+    console.log(new Route('home', 'home.html', true).isActiveRoute('#home'));
+   
+</script>
+
+</html>
