@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            background-color: rgb(205, 164, 50);
+        }
+
+        body {
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="ls">
+        <label for="name">Name:
+            <input type="text" id="name">
+        </label>
+        <button type="submit">Save LS</button>
+        <button id="clear-ls" type="submit">Clear LS</button>
+    </form>
+    <form id="ss">
+        <label for="words">Words:
+            <input type="text" id="words">
+        </label>
+        <button type="submit">Save SS</button>
+        <button id="clear-ss">Clear SS</button>
+    </form>
+</body>
+<script>
+    const lsForm = document.querySelector('#ls');
+    const ssForm = document.querySelector('#ss');
+    const nameInput = document.querySelector('#name');
+    const wordsInput = document.querySelector('#words');
+
+    lsForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        localStorage.setItem('name', nameInput.value);
+        nameInput.value = '';
+    })
+
+    ssForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const words = JSON.parse(sessionStorage.getItem('words')) || [];
+        console.log(words);
+        wordsInput.value !='' ? words.push(wordsInput.value) : null;
+        sessionStorage.setItem('words',JSON.stringify(words));
+        wordsInput.value = '';
+    })
+
+    /* 
+    * CLEAR STORAGE
+    */
+
+   const btnCleatLS = document.querySelector('#clear-ls');
+   const btnCleatSS = document.querySelector('#clear-ss');
+   btnCleatLS.addEventListener('click', (e) => {
+       localStorage.removeItem('name');
+   });
+   btnCleatSS.addEventListener('click', (e) => {
+       sessionStorage.clear();
+   });
+</script>
+</html>
