@@ -38,3 +38,14 @@ type ID = string | number;
 const id1: ID = '134';
 const id2: ID = 124;
 // const id3: ID = true; 
+
+//========= test
+const itemSource: {id: string, name: string, [key: string]: string} = {
+    "id": "abc-news",
+    "name": "ABC News",
+    "description": "Your trusted source for breaking news, analysis, exclusive interviews, headlines, and videos at ABCNews.com.",
+    "url": "https://abcnews.go.com",
+    "category": "general",
+    "language": "en",
+    "country": "us"
+}

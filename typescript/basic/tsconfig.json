@@ -1,0 +1,16 @@
+{
+    "include": [
+        "ms-tutorial/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "AMD",
+        "allowJs": true,
+        "checkJs": true,
+        "strict": true
+    }
+}

@@ -1,0 +1,18 @@
+{
+    // "files": ["test.ts"],
+    "include": [
+        "**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "AMD",
+        "outFile": "./build/bundle.js",
+        "allowJs": true,
+        "checkJs": true,
+        "strict": true
+    }
+}
